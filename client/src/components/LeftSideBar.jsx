@@ -5,10 +5,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux'
 import {logout} from '../redux/userSlice'
+import Cookies from 'js-cookie';
 const LeftSideBar = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
+    Cookies.remove("access_token");
   }
   return (
     <div className="flex flex-col h-full md:h-[90vh] justify-between mr-6">

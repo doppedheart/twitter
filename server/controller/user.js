@@ -1,19 +1,14 @@
 import {handleError} from '../error.js';
 import User from '../models/User.js';
 
-export const getUser =async (req,res,next)=>{
-    try{
-        const user=await User.findById(req.params.id);
-        if(!user){
-            next(handleError(404,"user not found"));
-        }
-        return res.status(200).json(user);
-
-    }catch(err){
-        next(err);
-    }
-
-}
+export const getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+};
 
 export const updateUser =async (req,res,next)=>{
     const user =req.user;

@@ -11,7 +11,8 @@ const MainTweet = () => {
       const newTweet = await axios.post("http://localhost:3000/api/tweets",{
         userId: currentUser._id,
         description: tweetText,
-      });
+      },
+      {withCredentials:true});
       console.log(newTweet);
       window.location.reload(false);
     }catch(err){

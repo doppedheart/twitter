@@ -12,20 +12,18 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 const Tweet = ({ tweet, setData }) => {
   const { currentUser } = useSelector((state) => state.user);
 
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState(null);
 
   const dateStr = formatDistance(new Date(tweet.createdAt), new Date());
   const location = useLocation().pathname;
   const { id } = useParams();
 
-  console.log(location);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const findUser = await axios.get(
-          `http://localhost:3000/api/users/find/${tweet.userId}`
+          `http://localhost:3000/api/users/find/${tweet.userId}`,
         );
-
         setUserData(findUser.data);
       } catch (err) {
         console.log("error", err);
@@ -43,22 +41,26 @@ const Tweet = ({ tweet, setData }) => {
         `http://localhost:3000/api/tweets/${tweet._id}/like`,
         {
           id: currentUser._id,
-        }
+        },
+        { withCredentials: true }
       );
 
       if (location.includes("profile")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/user/all/${id}`
+          `http://localhost:3000/api/tweets/user/all/${id}`,
+          { withCredentials: true }
         );
         setData(newData.data);
       } else if (location.includes("explore")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/explore`
+          `http://localhost:3000/api/tweets/explore`,
+          { withCredentials: true }
         );
         setData(newData.data);
       } else {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
+          `http://localhost:3000/api/tweets/timeline/${currentUser._id}`,
+          { withCredentials: true }
         );
         setData(newData.data);
       }

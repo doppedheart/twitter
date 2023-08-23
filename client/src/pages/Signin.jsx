@@ -21,12 +21,20 @@ const Signin = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/signin", {
-        username,
-        password,
-      },{
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
         withCredentials: true,
-      });
+      };
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/signin",
+        {
+          username,
+          password,
+        },
+        config
+      );
       console.log(Cookies.get("access_token"));
       dispatch(loginSuccess(res.data));
       navigate("/");
@@ -40,11 +48,21 @@ const Signin = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post("http://localhost:3000/api/auth/signup", {
-        username,
-        password,
-        email,
-      });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      };
+      const res = await axios.post(
+        "http://localhost:3000/api/auth/signup",
+        {
+          username,
+          password,
+          email,
+        },
+        config
+      );
       dispatch(loginSuccess(res.data));
       navigate("/");
       console.log(res.data);

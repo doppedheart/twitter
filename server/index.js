@@ -23,15 +23,16 @@ const connect = () => {
     });
 };
 
-app.use(
-  cors({
-    origin:true,
-    credentials: true,
-  })
-);
 app.use(cookieParser());
 app.use(express.json());
 
+app.use(
+  "*",
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/tweets", tweetRouter);
