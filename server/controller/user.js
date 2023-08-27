@@ -1,4 +1,3 @@
-import {handleError} from '../error.js';
 import User from '../models/User.js';
 
 export const getUser = async (req, res, next) => {
@@ -41,7 +40,7 @@ export const follow = async(req,res,next)=>{
         const currentUser =await User.findById(req.body.id);
         if(!user.followers.includes(req.body.id)){
             await user.updateOne({$push:{followers:req.body.id}});
-            await currentUser.updateOne({$push:{followings:req.params.id}});
+            await currentUser.updateOne({$push:{following:req.params.id}});
         }
         else{
             res.status(403).json("you already follow this user");
@@ -55,9 +54,9 @@ export const unfollow =async(req,res,next)=>{
     try{
         const user = await User.findById(req.params.id);
         const currentUser =await User.findById(req.body.id);
-        if(currentUser.followings.includes(req.params.id)){
+        if(currentUser.following.includes(req.params.id)){
             await user.updateOne({$pull:{followers:req.body.id}});
-            await currentUser.updateOne({$pull:{followings:req.params.id}});
+            await currentUser.updateOne({$pull:{following:req.params.id}});
         }
         else{
             res.status(403).json("you do not follow this user");

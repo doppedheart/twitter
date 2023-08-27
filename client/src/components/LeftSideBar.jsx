@@ -3,10 +3,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import TagIcon from "@mui/icons-material/Tag";
 import PersonIcon from "@mui/icons-material/Person";
 import { Link } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {logout} from '../redux/userSlice'
 import Cookies from 'js-cookie';
 const LeftSideBar = () => {
+  const {currentUser} =useSelector((state)=>state.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
@@ -27,7 +28,7 @@ const LeftSideBar = () => {
             Explore
           </div>
         </Link>
-        <Link to="/profile/">
+        <Link to={`/profile/${currentUser._id}`}>
           <div className="flex items-center space-x-2 px-2 py-3 hover:bg-slate-200 rounded-full cursor-pointer">
             <PersonIcon fontSize="large" />
             Profile
@@ -36,10 +37,10 @@ const LeftSideBar = () => {
       </div>
         <div className="flex justify-between">
             <div>
-                <p className="font-bold">username</p>
-                <p className="fond-bold">@username</p>
+                <p className="font-bold">{currentUser.username}</p>
+                <p className="fond-bold">@{currentUser.username}</p>
             </div>
-            <Link to="signin">
+            <Link to="/signin">
                 <button className="bg-red-500 px-4 py-2 text-white rounded-full" onClick={handleLogout}>logout</button>
             </Link>
         </div>

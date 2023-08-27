@@ -22,7 +22,7 @@ const Tweet = ({ tweet, setData }) => {
     const fetchData = async () => {
       try {
         const findUser = await axios.get(
-          `http://localhost:3000/api/users/find/${tweet.userId}`,
+          `http://localhost:3000/api/users/find/${tweet.userId}`
         );
         setUserData(findUser.data);
       } catch (err) {
@@ -47,20 +47,17 @@ const Tweet = ({ tweet, setData }) => {
 
       if (location.includes("profile")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/user/all/${id}`,
-          { withCredentials: true }
+          `http://localhost:3000/api/tweets/user/all/${id}`
         );
         setData(newData.data);
       } else if (location.includes("explore")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/explore`,
-          { withCredentials: true }
+          `http://localhost:3000/api/tweets/explore`
         );
         setData(newData.data);
       } else {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/timeline/${currentUser._id}`,
-          { withCredentials: true }
+          `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
         );
         setData(newData.data);
       }
@@ -74,7 +71,7 @@ const Tweet = ({ tweet, setData }) => {
       {userData && (
         <>
           <div className="flex space-x-2">
-            {/* <img src="" alt="" /> */}
+            <img src="" alt="" />
             <Link to={`/profile/${userData._id}`}>
               <h3 className="font-bold">{userData.username}</h3>
             </Link>

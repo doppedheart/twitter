@@ -45,7 +45,7 @@ export const getAllTweets = async (req, res, next) => {
     const currentUser = await User.findById(req.params.id);
     const userTweets = await Tweet.find({ userId: currentUser._id });
     const followingTweets = await Promise.all(
-      currentUser.followings.map((followingId) => {
+      currentUser.following.map((followingId) => {
         return Tweet.find({ userId: followingId });
       })
     );

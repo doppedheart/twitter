@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   loginFailed,
   loginStart,
@@ -35,12 +36,22 @@ const Signin = () => {
         },
         config
       );
-      console.log(Cookies.get("access_token"));
+      toast("Login Successfull");
       dispatch(loginSuccess(res.data));
       navigate("/");
       console.log(res.data);
     } catch (err) {
       console.log(err);
+      toast.error("credentials not found!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       dispatch(loginFailed());
     }
   };
@@ -64,6 +75,7 @@ const Signin = () => {
         config
       );
       dispatch(loginSuccess(res.data));
+      toast("SignUp Successful");
       navigate("/");
       console.log(res.data);
     } catch (err) {

@@ -12,7 +12,7 @@ const tweetSchema = new mongoose.Schema({
     },
     likes:{
         type:Array,
-        default:[],
+        defaultValue:[],
     }
 },{timestamps:true});
 
