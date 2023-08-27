@@ -29,7 +29,7 @@ const Signin = () => {
         withCredentials: true,
       };
       const res = await axios.post(
-        "http://localhost:3000/api/auth/signin",
+        "https://twitter-backend-f4om.onrender.com/api/auth/signin",
         {
           username,
           password,
@@ -66,7 +66,7 @@ const Signin = () => {
         withCredentials: true,
       };
       const res = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        "https://twitter-backend-f4om.onrender.com/api/auth/signup",
         {
           username,
           password,

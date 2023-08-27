@@ -8,7 +8,7 @@ const ExploreTweet = () => {
     useEffect(()=>{
         const fetchData = async()=>{
             try{
-                const exploreTweet = await axios.get("http://localhost:3000/api/tweets/explore",{withCredentials:true});
+                const exploreTweet = await axios.get("https://twitter-backend-f4om.onrender.com/api/tweets/explore",{withCredentials:true});
                 setExplore(exploreTweet.data);
             }catch(err){
                 console.log(err);

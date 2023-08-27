@@ -20,10 +20,10 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       const userTweets = await axios.get(
-        `http://localhost:3000/api/tweets/user/all/${id}`
+        `https://twitter-backend-f4om.onrender.com/api/tweets/user/all/${id}`
       );
       const userProfile = await axios.get(
-        `http://localhost:3000/api/users/find/${id}`
+        `https://twitter-backend-f4om.onrender.com/api/users/find/${id}`
       );
 
       setUserTweet(userTweets.data);
@@ -36,7 +36,7 @@ const Profile = () => {
     if (!currentUser.following.includes(id)) {
       try {
         const follow = await axios.put(
-          `http://localhost:3000/api/users/follow/${id}`,
+          `https://twitter-backend-f4om.onrender.com/api/users/follow/${id}`,
           {
             id: currentUser._id,
           },
@@ -49,7 +49,7 @@ const Profile = () => {
     } else {
       try {
         const unfollow = await axios.put(
-          `http://localhost:3000/api/users/unfollow/${id}`,
+          `https://twitter-backend-f4om.onrender.com/api/users/unfollow/${id}`,
           {
             id: currentUser._id,
           },

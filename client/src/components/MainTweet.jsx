@@ -9,7 +9,7 @@ const MainTweet = () => {
     e.preventDefault();
     try {
       const newTweet = await axios.post(
-        "http://localhost:3000/api/tweets",
+        "https://twitter-backend-f4om.onrender.com/api/tweets",
         {
           userId: currentUser._id,
           description: tweetText,

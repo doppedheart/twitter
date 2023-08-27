@@ -22,7 +22,7 @@ const Tweet = ({ tweet, setData }) => {
     const fetchData = async () => {
       try {
         const findUser = await axios.get(
-          `http://localhost:3000/api/users/find/${tweet.userId}`
+          `https://twitter-backend-f4om.onrender.com/api/users/find/${tweet.userId}`
         );
         setUserData(findUser.data);
       } catch (err) {
@@ -38,7 +38,7 @@ const Tweet = ({ tweet, setData }) => {
 
     try {
       const like = await axios.put(
-        `http://localhost:3000/api/tweets/${tweet._id}/like`,
+        `https://twitter-backend-f4om.onrender.com/api/tweets/${tweet._id}/like`,
         {
           id: currentUser._id,
         },
@@ -47,17 +47,17 @@ const Tweet = ({ tweet, setData }) => {
 
       if (location.includes("profile")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/user/all/${id}`
+          `https://twitter-backend-f4om.onrender.com/api/tweets/user/all/${id}`
         );
         setData(newData.data);
       } else if (location.includes("explore")) {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/explore`
+          `https://twitter-backend-f4om.onrender.com/api/tweets/explore`
         );
         setData(newData.data);
       } else {
         const newData = await axios.get(
-          `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
+          `https://twitter-backend-f4om.onrender.com/api/tweets/timeline/${currentUser._id}`
         );
         setData(newData.data);
       }
