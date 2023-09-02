@@ -15,6 +15,10 @@ export const signup = async (req, res, next) => {
     const token = jwt.sign({ id: newUser._id }, process.env.JWT);
     res.cookie("access_token", token, {
       httpOnly: true,
+      secure: true, 
+      maxAge: 30 * 24 * 60 * 60 * 1000, 
+      domain: "twitter-anurag.vercel.app",
+      path: "/",
     });
 
     return res.status(201).json(newUser);
@@ -36,6 +40,10 @@ export const signin = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT);
     res.cookie("access_token", token, {
       httpOnly: true,
+      secure: true,
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      domain: "twitter-anurag.vercel.app",
+      path: "/",
     });
     return res.status(200).json(user);
   } catch (err) {
