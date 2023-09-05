@@ -13,15 +13,15 @@ export const signup = async (req, res, next) => {
     });
     await newUser.save();
     const token = jwt.sign({ id: newUser._id }, process.env.JWT);
-    res.cookie("access_token", token, {
-      httpOnly: true,
-      secure: true, 
-      maxAge: 30 * 24 * 60 * 60 * 1000, 
-      domain: "twitter-anurag.vercel.app",
-      path: "/",
-    });
+    // res.cookie("access_token", token, {
+    //   httpOnly: true,
+    //   secure: true, 
+    //   maxAge: 30 * 24 * 60 * 60 * 1000, 
+    //   domain: "twitter-anurag.vercel.app",
+    //   path: "/",
+    // });
 
-    return res.status(201).json(newUser);
+    return res.status(201).json({user:newUser,token});
   } catch (err) {
     next(err);
   }
@@ -38,14 +38,14 @@ export const signin = async (req, res, next) => {
       next(handleError(400, "wrong password"));
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT);
-    res.cookie("access_token", token, {
-      httpOnly: true,
-      secure: true,
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      domain: "twitter-anurag.vercel.app",
-      path: "/",
-    });
-    return res.status(200).json(user);
+    // res.cookie("access_token", token, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   maxAge: 30 * 24 * 60 * 60 * 1000,
+    //   domain: "twitter-anurag.vercel.app",
+    //   path: "/",
+    // });
+    return res.status(200).json({user,token});
   } catch (err) {
     next(err);
   }

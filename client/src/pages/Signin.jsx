@@ -36,6 +36,7 @@ const Signin = () => {
         },
         config
       );
+      localStorage.setItem('token',res.data.token);
       toast("Login Successfull");
       dispatch(loginSuccess(res.data));
       navigate("/");
@@ -74,6 +75,7 @@ const Signin = () => {
         },
         config
       );
+      localStorage.setItem('token',res.data.token);
       dispatch(loginSuccess(res.data));
       toast("SignUp Successful");
       navigate("/");
