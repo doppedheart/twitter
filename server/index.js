@@ -26,7 +26,10 @@ const connect = () => {
 app.use(cookieParser());
 app.use(express.json());
 
-const allowedOrigins = ["https://twitter-anurag.vercel.app"];
+const allowedOrigins = [
+  "https://twitter-anurag.vercel.app",
+  "http://localhost:5173",
+];
 
 app.use(
   cors({

@@ -29,15 +29,18 @@ const Signin = () => {
         withCredentials: true,
       };
       const res = await axios.post(
-        "https://twitter-backend-f4om.onrender.com/api/auth/signin",
+        import.meta.env.PRODUCTION
+          ? "https://twitter-backend-f4om.onrender.com/api/auth/signin"
+          : "http://localhost:3000/api/auth/signin",
         {
           username,
           password,
         },
         config
       );
-      localStorage.setItem('token',res.data.token);
+      localStorage.setItem("token", res.data.token);
       toast("Login Successfull");
+      const payload= {user: res.data._doc,token:res.data.token};
       dispatch(loginSuccess(res.data));
       navigate("/");
       console.log(res.data);
@@ -67,7 +70,9 @@ const Signin = () => {
         withCredentials: true,
       };
       const res = await axios.post(
-        "https://twitter-backend-f4om.onrender.com/api/auth/signup",
+        import.meta.env.PRODUCTION
+          ? "https://twitter-backend-f4om.onrender.com/api/auth/signup"
+          : "http://localhost:3000/api/auth/signup",
         {
           username,
           password,
@@ -75,7 +80,7 @@ const Signin = () => {
         },
         config
       );
-      localStorage.setItem('token',res.data.token);
+      localStorage.setItem("token", res.data.token);
       dispatch(loginSuccess(res.data));
       toast("SignUp Successful");
       navigate("/");

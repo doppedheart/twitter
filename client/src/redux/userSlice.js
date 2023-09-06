@@ -14,8 +14,9 @@ export const userSlice = createSlice({
       state.isLoading = true;
     },
     loginSuccess: (state, action) => {
+      const token = action.payload.token;
       state.isLoading = false;
-      state.currentUser = action.payload;
+      state.currentUser = { ...action.payload._doc, token };
     },
     loginFailed: (state) => {
       state.isLoading = false;

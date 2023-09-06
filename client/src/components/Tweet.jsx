@@ -22,7 +22,9 @@ const Tweet = ({ tweet, setData }) => {
     const fetchData = async () => {
       try {
         const findUser = await axios.get(
-          `https://twitter-backend-f4om.onrender.com/api/users/find/${tweet.userId}`
+          import.meta.env.PRODUCTION
+            ? `https://twitter-backend-f4om.onrender.com/api/users/find/${tweet.userId}`
+            : `http://localhost:3000/api/users/find/${tweet.userId}`
         );
         setUserData(findUser.data);
       } catch (err) {
@@ -38,26 +40,35 @@ const Tweet = ({ tweet, setData }) => {
 
     try {
       const like = await axios.put(
-        `https://twitter-backend-f4om.onrender.com/api/tweets/${tweet._id}/like`,
+        import.meta.env.PRODUCTION
+          ? `https://twitter-backend-f4om.onrender.com/api/tweets/${tweet._id}/like`
+          : `http://localhost:3000/api/tweets/${tweet._id}/like`,
         {
           id: currentUser._id,
+          token: currentUser.token,
         },
         { withCredentials: true }
       );
 
       if (location.includes("profile")) {
         const newData = await axios.get(
-          `https://twitter-backend-f4om.onrender.com/api/tweets/user/all/${id}`
+          import.meta.env.PRODUCTION
+            ? `https://twitter-backend-f4om.onrender.com/api/tweets/user/all/${id}`
+            : `http://localhost:3000/api/tweets/user/all/${id}`
         );
         setData(newData.data);
       } else if (location.includes("explore")) {
         const newData = await axios.get(
-          `https://twitter-backend-f4om.onrender.com/api/tweets/explore`
+          import.meta.env.PRODUCTION
+            ? `https://twitter-backend-f4om.onrender.com/api/tweets/explore`
+            : `http://localhost:3000/api/tweets/explore`
         );
         setData(newData.data);
       } else {
         const newData = await axios.get(
-          `https://twitter-backend-f4om.onrender.com/api/tweets/timeline/${currentUser._id}`
+          import.meta.env.PRODUCTION
+            ? `https://twitter-backend-f4om.onrender.com/api/tweets/timeline/${currentUser._id}`
+            : `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
         );
         setData(newData.data);
       }

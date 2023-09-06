@@ -1,18 +1,18 @@
-import React from 'react'
-import HomeIcon from '@mui/icons-material/Home';
+import React from "react";
+import HomeIcon from "@mui/icons-material/Home";
 import TagIcon from "@mui/icons-material/Tag";
 import PersonIcon from "@mui/icons-material/Person";
-import { Link } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux'
-import {logout} from '../redux/userSlice'
-import Cookies from 'js-cookie';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/userSlice";
+import Cookies from "js-cookie";
 const LeftSideBar = () => {
-  const {currentUser} =useSelector((state)=>state.user);
+  const { currentUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logout());
-    Cookies.remove("access_token");
-  }
+    localStorage.removeItem("token");
+  };
   return (
     <div className="flex flex-col h-full md:h-[90vh] justify-between mr-6">
       <div className="mt-6 flex flex-col space-y-4">
@@ -35,17 +35,21 @@ const LeftSideBar = () => {
           </div>
         </Link>
       </div>
-        <div className="flex justify-between">
-            <div>
-                <p className="font-bold">{currentUser.username}</p>
-                <p className="fond-bold">@{currentUser.username}</p>
-            </div>
-            <Link to="/signin">
-                <button className="bg-red-500 px-4 py-2 text-white rounded-full" onClick={handleLogout}>logout</button>
-            </Link>
+      <div className="flex justify-between">
+        <div>
+          <p className="font-bold">{currentUser.username}</p>
+          <p className="fond-bold">@{currentUser.username}</p>
         </div>
+        <Link to="/signin">
+          <button
+            className="bg-red-500 px-4 py-2 text-white rounded-full"
+            onClick={handleLogout}>
+            logout
+          </button>
+        </Link>
+      </div>
     </div>
   );
-}
+};
 
-export default LeftSideBar
+export default LeftSideBar;

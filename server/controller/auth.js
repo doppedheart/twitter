@@ -21,7 +21,7 @@ export const signup = async (req, res, next) => {
     //   path: "/",
     // });
 
-    return res.status(201).json({user:newUser,token});
+    return res.status(201).json({...newUser,token});
   } catch (err) {
     next(err);
   }
@@ -45,7 +45,7 @@ export const signin = async (req, res, next) => {
     //   domain: "twitter-anurag.vercel.app",
     //   path: "/",
     // });
-    return res.status(200).json({user,token});
+    return res.status(200).json({...user,token});
   } catch (err) {
     next(err);
   }

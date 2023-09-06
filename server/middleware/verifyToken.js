@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import { handleError } from "../error.js";
 
 export const verifyToken = (req, res, next) => {
-  console.log(req.token);
-  const token = req.token;
+  console.log(req.body.token);
+  const token = req.body.token;
   if (!token) {
     next(handleError(401, "unauthorized"));
   }
