@@ -13,7 +13,7 @@ const TimeLineTweet = () => {
     const fetchData = async () => {
       try {
         const timeLine = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/tweets/timeline/${currentUser._id}`
             : `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
         );

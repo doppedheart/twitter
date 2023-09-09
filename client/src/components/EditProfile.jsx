@@ -54,7 +54,7 @@ const EditProfile = ({ setOpen }) => {
         getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           try {
             const updateProfile = await axios.put(
-              import.meta.env.PRODUCTION
+              import.meta.env.VITE_PRODUCTION
                 ? `https://twitter-backend-f4om.onrender.com/api/users/${currentUser._id}`
                 : `http://localhost:3000/api/users/${currentUser._id}`,
               {
@@ -78,10 +78,10 @@ const EditProfile = ({ setOpen }) => {
 
   const handleDelete = async () => {
     const deleteProfile = await axios.delete(
-      import.meta.env.PRODUCTION
+      import.meta.env.VITE_PRODUCTION
         ? `https://twitter-backend-f4om.onrender.com/api/users/${currentUser._id}`
         : `http://localhost:3000/api/users/${currentUser._id}`,
-      {token: currentUser.token},
+      { token: currentUser.token },
       { withCredentials: true }
     );
     dispatch(logout());

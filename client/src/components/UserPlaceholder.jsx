@@ -10,7 +10,7 @@ const UserPlaceholder = ({ setUserData, userData }) => {
     const fetchData = async () => {
       try {
         const userProfile = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/users/find/${id}`
             : `http://localhost:3000/api/users/find/${id}`
         );

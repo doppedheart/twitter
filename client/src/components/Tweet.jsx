@@ -22,7 +22,7 @@ const Tweet = ({ tweet, setData }) => {
     const fetchData = async () => {
       try {
         const findUser = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/users/find/${tweet.userId}`
             : `http://localhost:3000/api/users/find/${tweet.userId}`
         );
@@ -40,7 +40,7 @@ const Tweet = ({ tweet, setData }) => {
 
     try {
       const like = await axios.put(
-        import.meta.env.PRODUCTION
+        import.meta.env.VITE_PRODUCTION
           ? `https://twitter-backend-f4om.onrender.com/api/tweets/${tweet._id}/like`
           : `http://localhost:3000/api/tweets/${tweet._id}/like`,
         {
@@ -52,21 +52,21 @@ const Tweet = ({ tweet, setData }) => {
 
       if (location.includes("profile")) {
         const newData = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/tweets/user/all/${id}`
             : `http://localhost:3000/api/tweets/user/all/${id}`
         );
         setData(newData.data);
       } else if (location.includes("explore")) {
         const newData = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/tweets/explore`
             : `http://localhost:3000/api/tweets/explore`
         );
         setData(newData.data);
       } else {
         const newData = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? `https://twitter-backend-f4om.onrender.com/api/tweets/timeline/${currentUser._id}`
             : `http://localhost:3000/api/tweets/timeline/${currentUser._id}`
         );

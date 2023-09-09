@@ -9,7 +9,7 @@ const ExploreTweet = () => {
     const fetchData = async () => {
       try {
         const exploreTweet = await axios.get(
-          import.meta.env.PRODUCTION
+          import.meta.env.VITE_PRODUCTION
             ? "https://twitter-backend-f4om.onrender.com/api/tweets/explore"
             : "http://localhost:3000/api/tweets/explore",
           { withCredentials: true }
@@ -26,7 +26,7 @@ const ExploreTweet = () => {
       {explore &&
         explore.map((tweet) => {
           return (
-            <div key={tweet._id} >
+            <div key={tweet._id}>
               <Tweet tweet={tweet} setData={setExplore} />
             </div>
           );

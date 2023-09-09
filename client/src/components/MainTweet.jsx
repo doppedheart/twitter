@@ -9,13 +9,13 @@ const MainTweet = () => {
     e.preventDefault();
     try {
       const newTweet = await axios.post(
-        import.meta.env.PRODUCTION
+        import.meta.env.VITE_PRODUCTION
           ? "https://twitter-backend-f4om.onrender.com/api/tweets"
           : "http://localhost:3000/api/tweets",
         {
           userId: currentUser._id,
           description: tweetText,
-          token:currentUser.token
+          token: currentUser.token,
         },
         { withCredentials: true }
       );
